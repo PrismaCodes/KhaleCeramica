@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/KhaleCeramica/static/css/main.d0db3649.css",
+    "main.css": "/KhaleCeramica/static/css/main.d1594612.css",
     "main.js": "/KhaleCeramica/static/js/main.927801af.js",
     "static/js/453.09ed972e.chunk.js": "/KhaleCeramica/static/js/453.09ed972e.chunk.js",
     "static/media/bootstrap-icons.woff?": "/KhaleCeramica/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
     "static/media/bootstrap-icons.woff2?": "/KhaleCeramica/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
     "index.html": "/KhaleCeramica/index.html",
-    "main.d0db3649.css.map": "/KhaleCeramica/static/css/main.d0db3649.css.map",
+    "main.d1594612.css.map": "/KhaleCeramica/static/css/main.d1594612.css.map",
     "main.927801af.js.map": "/KhaleCeramica/static/js/main.927801af.js.map",
     "453.09ed972e.chunk.js.map": "/KhaleCeramica/static/js/453.09ed972e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d0db3649.css",
+    "static/css/main.d1594612.css",
     "static/js/main.927801af.js"
   ]
 }
