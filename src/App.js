@@ -1,55 +1,55 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
-import './AppPropia.css'
-import CustomProvider from './Provider'
-import Navdar from './MiPagina/Navdar'
-import Main from './MiPagina/Main'
-import { useState } from 'react'
-import Footer from './MiPagina/Footer'
+// import { HashRouter, Routes, Route } from 'react-router-dom'
+// import './AppPropia.css'
+// import CustomProvider from './Provider'
+// import Navdar from './MiPagina/Navdar'
+// import Main from './MiPagina/Main'
+// import { useState } from 'react'
+// import Footer from './MiPagina/Footer'
 
-function App() {
+// function App() {
 
-  const [contactoAbierto, setContactoAbierto] = useState(false)
-  const [reservaAbierta, setReservaAbierta] = useState(false)
+//   const [contactoAbierto, setContactoAbierto] = useState(false)
+//   const [reservaAbierta, setReservaAbierta] = useState(false)
 
-  const abrirContacto = () => {
-    setContactoAbierto(true)
-  }
+//   const abrirContacto = () => {
+//     setContactoAbierto(true)
+//   }
 
-  const abrirReserva = () => {
-    setReservaAbierta(true)
-  }
+//   const abrirReserva = () => {
+//     setReservaAbierta(true)
+//   }
 
-  return (
+//   return (
 
-    <div className="App">
+//     <div className="App">
 
-      <HashRouter>
-        <Navdar abrirContacto={abrirContacto} abrirReserva={abrirReserva} />
-        <Routes>
-          <Route path="/" element={<Main />} />
-        </Routes>
-        <Footer />
-      </HashRouter>
-    </div>
-  )
-}
-function NewApp() {
+//       <HashRouter>
+//         <Navdar abrirContacto={abrirContacto} abrirReserva={abrirReserva} />
+//         <Routes>
+//           <Route path="/" element={<Main />} />
+//         </Routes>
+//         <Footer />
+//       </HashRouter>
+//     </div>
+//   )
+// }
+// function NewApp() {
 
-  return (
+//   return (
 
-    <CustomProvider>
+//     <CustomProvider>
 
-      <App />
+//       <App />
 
-    </CustomProvider>
+//     </CustomProvider>
 
-  )
+//   )
 
-}
-export default NewApp
+// }
+// export default NewApp
 
 
-// import { BrowserRouter, Routes, Route } from 'react-router-dom'
+// import { HashRouter, Routes, Route } from 'react-router-dom'
 // import './App.css'
 // import CustomProvider from './Provider'
 // import Navbar from './Component/Navbar'
@@ -76,7 +76,7 @@ export default NewApp
 //   }
 //   return (
 //       <div className="App">
-//        <BrowserRouter>
+//        <HashRouter>
 //         <Navbar abrirContacto={abrirContacto} abrirReserva={abrirReserva} />
 //         <Routes>
 //           <Route path="/" element={<Main abrirContacto={abrirContacto} />} />
@@ -85,7 +85,7 @@ export default NewApp
 //         <Contact abierto={contactoAbierto} cerrar={cerrarContacto} />
 //         <Reserva abierto={reservaAbierta} cerrar={cerrarReserva} />
 //         <Footer />
-//       </BrowserRouter>
+//       </HashRouter>
 //     </div>
 //   )
 // }
@@ -251,3 +251,45 @@ export default NewApp
 // }
 
 // export default NewApp
+
+
+
+import { HashRouter, Routes, Route } from 'react-router-dom'
+import './Chongui.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import CustomProvider from './Provider'
+import Navbar from './Chongui/Navbar';
+import Main from './Chongui/Main';
+
+function App() {
+  return (
+    <div className="app container">
+      <CustomProvider>
+        <HashRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Main />} />
+          </Routes>
+        </HashRouter>
+      </CustomProvider>
+    </div>
+  );
+}
+
+
+
+function NewApp() {
+
+  return (
+
+    <CustomProvider>
+
+      <App />
+
+    </CustomProvider>
+
+  )
+}
+
+export default NewApp
