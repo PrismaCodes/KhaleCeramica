@@ -1,238 +1,186 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 
-const Hero = () => {
+const HeroPrisma = () => {
 
-    const cardRef = useRef(null)
-    const heroRef = useRef(null)
+  const prismaRef = useRef(null)
 
-    useEffect(() => {
+  const moverPrisma = (e) => {
 
-        const hero = heroRef.current
-        const card = cardRef.current
+    const elemento = prismaRef.current
+    if (!elemento) return
 
-        if (!hero || !card) return
+    const rect = elemento.getBoundingClientRect()
 
-        const handleMouseMove = (e) => {
-            const rect = hero.getBoundingClientRect()
-            const x = e.clientX - rect.left
-            const y = e.clientY - rect.top
-            const centerX = rect.width / 2
-            const centerY = rect.height / 2
-            const rotateY = ((x - centerX) / centerX) * 8
-            const rotateX = ((centerY - y) / centerY) * 8
-            card.style.setProperty(
-                '--mouse-rotate-x',
-                `${rotateX}deg`
-            )
-            card.style.setProperty(
-                '--mouse-rotate-y',
-                `${rotateY}deg`
-            )
-            card.style.setProperty(
-                '--mouse-x',
-                `${(x / rect.width) * 100}%`
-            )
-            card.style.setProperty(
-                '--mouse-y',
-                `${(y / rect.height) * 100}%`
-            )
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
 
-        }
-        const handleMouseLeave = () => {
-            card.style.setProperty(
-                '--mouse-rotate-x',
-                '0deg'
-            )
-            card.style.setProperty(
-                '--mouse-rotate-y',
-                '0deg'
-            )
+    const centroX = rect.width / 2
+    const centroY = rect.height / 2
 
-        }
-        hero.addEventListener(
-            'mousemove',
-            handleMouseMove
-        )
+    const rotacionY = ((x - centroX) / centroX) * 10
+    const rotacionX = ((centroY - y) / centroY) * 8
 
-        hero.addEventListener(
-            'mouseleave',
-            handleMouseLeave
-        )
-        return () => {
-            hero.removeEventListener(
-                'mousemove',
-                handleMouseMove
-            )
-            hero.removeEventListener(
-                'mouseleave',
-                handleMouseLeave
-            )
-
-        }
-
-    }, [])
+    elemento.style.transform = `
+      perspective(900px)
+      rotateX(${rotacionX}deg)
+      rotateY(${rotacionY}deg)
+      scale(1.02)
+    `
+  }
 
 
-    return (
+  const resetPrisma = () => {
 
-        <section
-            id="inicio"
-            className="hero"
-            ref={heroRef}
+    const elemento = prismaRef.current
+    if (!elemento) return
+
+    elemento.style.transform = `
+      perspective(900px)
+      rotateX(0deg)
+      rotateY(0deg)
+      scale(1)
+    `
+  }
+
+
+  return (
+    <section className="prismaHero">
+
+      <div className="prismaHero__content">
+
+        <p className="prismaHero__eyebrow">
+          PENSAR · DISEÑAR · DESARROLLAR
+        </p>
+
+        <h1 className="prismaHero__title">
+          PRISMA
+        </h1>
+
+        <h2 className="prismaHero__subtitle">
+          SOLUCIONES DIGITALES
+          <span> PARA EMPRESAS y EMPRENDIMIENTOS</span>
+        </h2>
+
+        <p className="prismaHero__description">
+          Transformamos ideas, procesos y necesidades
+          en herramientas digitales claras,
+          funcionales y adaptadas a cada empresa.
+        </p>
+
+        <div className="prismaHero__services">
+          <span>DESARROLLO WEB</span>
+          <span>SOFTWARE A MEDIDA</span>
+          <span>SISTEMAS DE GESTIÓN</span>
+        </div>
+
+        <div className="prismaHero__buttons">
+
+          <a
+            href="#proyectos"
+            className="prismaBtn prismaBtn--primary"
+          >
+            VER PROYECTOS
+          </a>
+
+          <a
+            href="#contacto"
+            className="prismaBtn prismaBtn--secondary"
+          >
+            CONTACTO
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div
+        className="prismaTiltArea"
+        onMouseMove={moverPrisma}
+        onMouseLeave={resetPrisma}
+      >
+
+        <div
+          ref={prismaRef}
+          className="prismaVisual"
         >
 
-            <div className="hero__grid"></div>
-            <div className="hero__glow hero__glow--one"></div>
-            <div className="hero__glow hero__glow--two"></div>
-            <span className="hero__spark hero__spark--one">
-                +
-            </span>
-            <span className="hero__spark hero__spark--two">
-                +
-            </span>
-            <span className="hero__spark hero__spark--three">
-                ·
-            </span>
+          {/* brillo de fondo */}
+          <div className="prismaGlow"></div>
 
-            <div className="hero__container">
 
-                <div className="hero__content">
-                    <span className="hero__eyebrow">
-                        <span className="hero__eyebrow-line"></span>
-                        DISEÑO WEB / DESARROLLO
-                    </span>
-                    <div className="hero__title">
+          {/* PARTÍCULAS */}
 
-                        <span className="hero__title-line hero__title-line--one">
-                            PENSAR.
-                        </span>
+          <span className="prismaParticle prismaParticle--1">
+            P
+          </span>
 
-                        <span className="hero__title-line hero__title-line--two">
-                            DISEÑAR.
-                        </span>
+          <span className="prismaParticle prismaParticle--2">
+            R
+          </span>
 
-                        <span className="hero__title-line hero__title-line--three">
-                            CREAR.
-                        </span>
+          <span className="prismaParticle prismaParticle--3">
+            01
+          </span>
 
-                    </div>
+          <span className="prismaParticle prismaParticle--4">
+            {`{ }`}
+          </span>
 
-                    <p className="hero__question">
-                        Buscamos que te encuentren
-                        <br />
-                        y te recuerden.
-                    </p>
+          <span className="prismaParticle prismaParticle--5">
+            S
+          </span>
 
-                    <p className="hero__description">
-                        Desarrollamos experiencias digitales
-                        con identidad propia.
-                    </p>
-                    <p className="hero__description">
-                        Tu próximo cliente puede estar
-                        buscándote ahora mismo.
-                        <br />
-                        <strong>
-                            ¿Qué encuentra cuando te busca?
-                        </strong>
-                    </p>
-                    <div className="hero__actions">
-                        <a
-                            href="#contacto"
-                            className="hero__button"
-                        >
-                            QUIERO MI WEB
-                            <span>
-                                ↗
-                            </span>
-                        </a>
-                        <a
-                            href="#proyectos"
-                            className="hero__secondary"
-                        >
-                            VER PROYECTOS
-                            <span>
-                                ↓
-                            </span>
-                        </a>
-                    </div>
-                </div>
+          <span className="prismaParticle prismaParticle--6">
+            M
+          </span>
 
-                <div className="hero__visual">                      <div className="hero__orbit hero__orbit--one">
-                    <span>
-                        DISEÑO
-                    </span>
-                </div>
-                    <div className="hero__orbit hero__orbit--two">
-                        <span>
-                            EXPERIENCIA
-                        </span>
-                    </div>
-                    <div
-                        className="hero__card"
-                        ref={cardRef}
-                    >
-                        <div className="hero__card-shine"></div>
-                        <div className="hero__browser">
-                            <div className="hero__browser-dots">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div className="hero__browser-address">
-                                yourbusiness.com
-                            </div>
-                            <span className="hero__browser-menu">
-                                ≡
-                            </span>
-                        </div>
-                        <div className="hero__website">
-                            <div className="hero__website-top">
-                                <span>
-                                    YOUR
-                                </span>
-                                <strong>
-                                    BRAND
-                                </strong>
-                            </div>
-                            <div className="hero__website-content">
-                                <small>
-                                    ESTUDIO DIGITAL
-                                </small>
-                                <h2>
-                                    HACÉ QUE
-                                    <br />
-                                    TE ENCUENTREN.
-                                </h2>
-                                <button>
-                                    CONOCER MÁS
-                                    <span>↗</span>
-                                </button>
-                            </div>
-                            <div className="hero__website-number">
-                                01 / 04
-                            </div>
-                        </div>
-                        <div className="hero__card-border"></div>
-                    </div>
-                    <div className="hero__visual-label">
-                        <span className="hero__visual-dot"></span>
-                        INTERACTIVE WEB EXPERIENCE
-                    </div>
-                </div>
-            </div>
 
-            <div className="hero__scroll">
-                <span>
-                    SCROLL
-                </span>
-                <div className="hero__scroll-line">
-                    <span></span>
-                </div>
-            </div>
-        </section>
+          {/* HAZ QUE ENTRA */}
 
-    )
+          <div className="prismaInputBeam"></div>
 
+
+          {/* PRISMA */}
+
+          <div className="prismaShape">
+
+            <div className="prismaShape__inner"></div>
+
+            <div className="prismaShape__shine"></div>
+
+          </div>
+
+
+          {/* HACES QUE SALEN */}
+
+          <div className="prismaBeam prismaBeam--1"></div>
+
+          <div className="prismaBeam prismaBeam--2"></div>
+
+          <div className="prismaBeam prismaBeam--3"></div>
+
+
+          {/* pequeñas etiquetas */}
+
+          <span className="prismaOutput prismaOutput--1">
+            WEB
+          </span>
+
+          <span className="prismaOutput prismaOutput--2">
+            SOFTWARE
+          </span>
+
+          <span className="prismaOutput prismaOutput--3">
+            GESTIÓN
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+  )
 }
 
-export default Hero
+export default HeroPrisma
